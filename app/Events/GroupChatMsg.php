@@ -12,7 +12,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
-class MsgSent implements ShouldBroadcastNow
+class GroupChatMsg implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -35,7 +35,7 @@ class MsgSent implements ShouldBroadcastNow
         Log::info("broadcastOn");
         Log::info($this->msg);
 
-        return new PrivateChannel('msg');
+        return new PresenceChannel('group_chat' . $this->msg['group_id']);
 //        return new Channel('msg');
     }
 }
