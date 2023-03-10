@@ -19,3 +19,8 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+Echo.channel(`msg`)
+.listen('MsgSent', (e) => {
+    console.log(e.msg);
+});
